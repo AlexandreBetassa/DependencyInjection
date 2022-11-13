@@ -1,24 +1,17 @@
 ﻿using ExercicioApi.Contracts.v1;
+using MongoDB.Bson.Serialization.Attributes;
 using System.Globalization;
+using System.Text.Json.Serialization;
 
-namespace Exercicio.Models.v1;
+namespace ExercicioApi.Models.v1;
 
 public class Installment : IEntity
 {
-    public string Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+    public string? Id { get; set; }
+    [JsonPropertyName("DueDate")]
     public DateTime DueDate { get; set; }
+    [JsonPropertyName("Amount")]
     public double Amount { get; set; }
-
-    public Installment(DateTime dueDate, double amount)
-    {
-        DueDate = dueDate;
-        Amount = amount;
-    }
-
-    public override string ToString()
-    {
-        return DueDate.ToString("dd/MM/yyyy")
-            + " - "
-            + Amount.ToString("F2");
-    }
 }

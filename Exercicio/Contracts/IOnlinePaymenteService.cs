@@ -1,4 +1,4 @@
-﻿namespace Exercicio.Services.v1.Interfaces;
+﻿namespace Exercicio.Contracts;
 
 public interface IOnlinePaymenteService
 {

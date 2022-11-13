@@ -1,20 +1,22 @@
 ﻿using ExercicioApi.Contracts.v1;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
-namespace Exercicio.Models.v1
+namespace ExercicioApi.Models.v1
 {
     public class Contract : IEntity
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public  string Id { get; set; }     
-        public int Number { get; set; }
+        public string? Id { get; set; }
+        [JsonPropertyName("Number")]
+        public string Number { get; set; }
+        [JsonPropertyName("Date")]
         public DateTime Date { get; set; }
+        [JsonPropertyName("TotalValues")]
         public double TotalValue { get; set; }
+        [JsonPropertyName("Installments")]
         public List<Installment> Installments { get; set; }
 
-        public Contract() => Installments = new List<Installment>();
-
-        public void AddInstallment(Installment installment) => Installments.Add(installment);
     }
 }

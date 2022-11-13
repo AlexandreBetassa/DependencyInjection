@@ -1,17 +1,37 @@
-﻿using Exercicio.Models.v1;
+﻿using Exercicio.Controllers.v1;
 using Exercicio.Services.v1;
 
-Console.Write("Informe o número do contrato: ");
-int.TryParse(Console.ReadLine(), out var numberContract);
-Console.Write("Informe o valor total do contrato: ");
-double.TryParse(Console.ReadLine(), out var value);
-Console.Write("Informe o número de parcelas: ");
-int.TryParse(Console.ReadLine(), out var mounths);
+Main();
+void Main()
+{
+    ContractController contractController = new();
+    do
+    {
+        var op = Menu();
+        switch (op)
+        {
+            case 0:
+                Environment.Exit(0);
+                break;
+            case 1:
+                contractController.NewContract();
+                break;
+            case 2:
+                contractController.Get();
+                break;
+            case 3:
+                contractController.GetOne();
+                break;
+            default:
+                Console.WriteLine("Opção invélida");
+                break;
+        }
+    } while (true);
+}
 
-Contract contract = new() { Number = numberContract, Date = DateTime.Now, TotalValue = value };
-
-ContractService contractService = new(new PaypalService());
-
-contractService.ProcessContract(contract, mounths);
-Console.WriteLine("### VALORES ###");
-contract.Installments.ForEach(installments => Console.WriteLine(installments));
+int Menu()
+{
+    Console.Write("Informe a opção:\n0- Sair\n1 - Novo Contrato\n2 - Listar Todos\n3 - Buscar Contrato\n> ");
+    int.TryParse(Console.ReadLine(), out int op);
+    return op;
+}

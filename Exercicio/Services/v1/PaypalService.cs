@@ -1,4 +1,4 @@
-﻿using Exercicio.Services.v1.Interfaces;
+﻿using Exercicio.Contracts;
 
 namespace Exercicio.Services.v1;
 
