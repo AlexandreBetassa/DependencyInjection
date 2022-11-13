@@ -7,7 +7,7 @@ public class ContractService
 {
     private readonly IOnlinePaymenteService _paypalService;
 
-    public ContractService(PaypalService paypalService) => _paypalService = paypalService;
+    public ContractService(IOnlinePaymenteService paypalService) => _paypalService = paypalService;
 
     public void ProcessContract(Contract contract, int month)
     {
