@@ -1,7 +1,6 @@
-﻿
-using Exercicio.Models.v1;
+﻿using Exercicio.Models.v1;
 
-namespace Exercicio.Contracts
+namespace Exercicio.Contracts.v1
 {
     public interface IContractRepository
     {

@@ -1,10 +1,11 @@
 ﻿using Exercicio.Controllers.v1;
+using Exercicio.Repositories.v1;
 using Exercicio.Services.v1;
 
 Main();
 void Main()
 {
-    ContractController contractController = new();
+    ContractController contractController = new(new ContractService(new PaypalService(), new ContractRepository()));
     do
     {
         var op = Menu();
@@ -23,7 +24,7 @@ void Main()
                 contractController.GetOne();
                 break;
             default:
-                Console.WriteLine("Opção invélida");
+                Console.WriteLine("Opção inválida");
                 break;
         }
     } while (true);

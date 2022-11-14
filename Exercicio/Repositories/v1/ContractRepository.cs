@@ -1,13 +1,12 @@
-﻿using Exercicio.Contracts;
+﻿using Exercicio.Contracts.v1;
 using Exercicio.Models.v1;
 using System.Text;
 using System.Text.Json;
 
-namespace Exercicio.Repositories
+namespace Exercicio.Repositories.v1
 {
     public class ContractRepository : IContractRepository
     {
-        public ContractRepository() { }
 
         public async Task<bool> Create(Contract contract)
         {

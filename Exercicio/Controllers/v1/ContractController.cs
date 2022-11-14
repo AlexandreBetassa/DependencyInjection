@@ -1,33 +1,18 @@
-﻿using Exercicio.Contracts;
-using Exercicio.Models.v1;
-using Exercicio.Repositories;
-using Exercicio.Services.v1;
-using System.Runtime.CompilerServices;
+﻿using Exercicio.Contracts.v1;
 
 namespace Exercicio.Controllers.v1
 {
     public class ContractController
     {
-        private IContractService _service;
+        private readonly IContractService _service;
 
-        public ContractController() { }
+        public ContractController(IContractService service) => _service = service;
 
-        public void NewContract()
-        {
-            _service = new ContractService(new PaypalService(), new ContractRepository());
-            _service.NewContract();
-        }
-        public void Get()
-        {
-            _service = new ContractService(new ContractRepository());
-            _service.Get();
-        }
+        public void NewContract() => _service.NewContract();
 
-        public void GetOne()
-        {
-            _service = new ContractService(new ContractRepository());
-            _service.GetOne();
-        }
+        public void Get() => _service.Get();
+
+        public void GetOne() => _service.GetOne();
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using Exercicio.Contracts;
+﻿using Exercicio.Contracts.v1;
 using Exercicio.Models.v1;
 
 namespace Exercicio.Services.v1;
@@ -13,8 +13,6 @@ public class ContractService : IContractService
         _paypalService = paypalService;
         _contractRepository = contractRepository;
     }
-
-    public ContractService(IContractRepository contractRepository) => _contractRepository = contractRepository;
 
     public void ProcessContract(Contract contract, int month)
     {
@@ -37,7 +35,6 @@ public class ContractService : IContractService
             PrintInstallments(contract);
             Console.WriteLine();
         }
-
     }
 
     public void GetOne()
