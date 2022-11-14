@@ -1,6 +1,5 @@
 ﻿using ExercicioApi.Contracts.v1;
 using MongoDB.Bson.Serialization.Attributes;
-using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace ExercicioApi.Models.v1;

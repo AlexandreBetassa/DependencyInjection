@@ -13,10 +13,10 @@ namespace ExercicioApi.Controllers.v1
         public ContractController(IContractRepository repositoryContract) => _repositoryContract = repositoryContract;
 
         [HttpPost]
-        public async Task<Contract> Post([FromBody] Contract contract)
+        public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
         {
-            contract.Number = "1";
-            return await _repositoryContract.Create(contract);
+            await _repositoryContract.Create(contract);
+            return CreatedAtRoute("GetContract", new { numberContract = contract.Number }, contract);
         }
 
         [HttpGet]

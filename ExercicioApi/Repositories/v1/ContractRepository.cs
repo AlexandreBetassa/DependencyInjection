@@ -14,7 +14,7 @@ namespace ExercicioApi.Repositories.v1
             var database = contract.GetDatabase(settings.DatabaseName);
             _contractRepository = database.GetCollection<Contract>(settings.ContractCollectionName);
         }
-        public async Task<Contract> Create(Contract contract) 
+        public async Task<Contract> Create(Contract contract)
         {
             _contractRepository.InsertOne(contract);
             return await Task.FromResult(contract);
