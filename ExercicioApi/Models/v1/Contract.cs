@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ExercicioApi.Models.v1
 {
-    public class Contract : IEntity
+    public class Contract 
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]

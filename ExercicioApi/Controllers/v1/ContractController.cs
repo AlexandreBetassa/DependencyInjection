@@ -8,9 +8,9 @@ namespace ExercicioApi.Controllers.v1
     [ApiController]
     public class ContractController : ControllerBase
     {
-        private readonly IContractRepository _repositoryContract;
+        private readonly IContractService _repositoryContract;
 
-        public ContractController(IContractRepository repositoryContract) => _repositoryContract = repositoryContract;
+        public ContractController(IContractService repositoryContract) => _repositoryContract = repositoryContract;
 
         [HttpPost]
         public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
@@ -23,6 +23,6 @@ namespace ExercicioApi.Controllers.v1
         public async Task<ActionResult<List<Contract>>> Get() => await _repositoryContract.Get();
 
         [HttpGet("{numberContract}", Name = "GetContract")]
-        public async Task<ActionResult<Contract>> Get(string numberContract) => await _repositoryContract.GetContract(numberContract);
+        public async Task<ActionResult<Contract>> Get(string numberContract) => _repositoryContract.GetContract(numberContract);
     }
 }

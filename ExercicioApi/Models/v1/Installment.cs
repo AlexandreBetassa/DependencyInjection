@@ -1,10 +1,9 @@
-﻿using ExercicioApi.Contracts.v1;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
 namespace ExercicioApi.Models.v1;
 
-public class Installment : IEntity
+public class Installment 
 {
     [BsonId]
     [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
