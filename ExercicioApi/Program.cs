@@ -4,8 +4,6 @@ using ExercicioApi.Models.v1;
 using ExercicioApi.Repositories.v1;
 using ExercicioApi.Utils.v1;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using System.Drawing.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

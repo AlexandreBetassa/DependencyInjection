@@ -10,7 +10,7 @@ namespace ExercicioApi.Data.v1
         {
             var mongoConnection = new MongoClient(settings.ConnectionString);
             var database = mongoConnection.GetDatabase(settings.DatabaseName);
-            _collection = database.GetCollection<T>($"{typeof(T).Name}");
+            _collection = database.GetCollection<T>(typeof(T).Name);
         }
 
         public async Task<T> CreateAsync(T entity)
