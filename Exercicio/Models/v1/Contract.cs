@@ -4,6 +4,8 @@ namespace Exercicio.Models.v1
 {
     public class Contract
     {
+        [JsonPropertyName("Id")]
+        public string Id { get; set; }
         [JsonPropertyName("Number")]
         public string Number { get; set; }
         [JsonPropertyName("Date")]
@@ -19,7 +21,8 @@ namespace Exercicio.Models.v1
 
         public override string ToString()
         {
-            return $"Número contrato: {Number}\nData de assinatura: {Date: dd/MM/yyyy hh:mm:ss}\nValor Contratato: R${TotalValue:F} " +
+            return $"ID: {Id}\nNúmero contrato: {Number}\nData de assinatura: {Date: dd/MM/yyyy hh:mm:ss}\n" +
+                $"Valor Contratato: R${TotalValue:F}\n" +
                 $"Valor a ser pago: R${Installments.Sum(installment => installment.Amount):F}".ToString();
         }
     }

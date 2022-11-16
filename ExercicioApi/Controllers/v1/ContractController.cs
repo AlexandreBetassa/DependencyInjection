@@ -28,7 +28,7 @@ namespace ExercicioApi.Controllers.v1
         [HttpGet]
         public async Task<ActionResult<List<Contract>>> Get() => await _repositoryContract.GetAsync();
 
-        [HttpGet("{numberContract}", Name = "GetContract")]
-        public async Task<ActionResult<Contract>> Get(string numberContract) => await _repositoryContract.GetAsync(numberContract);
+        [HttpGet("{id}", Name = "GetContract")]
+        public async Task<ActionResult<Contract>> Get(string id) => await _repositoryContract.GetAsync(id);
     }
 }

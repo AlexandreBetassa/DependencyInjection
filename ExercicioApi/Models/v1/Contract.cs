@@ -8,6 +8,7 @@ namespace ExercicioApi.Models.v1
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        [JsonPropertyName("Id")]
         public string? Id { get; set; }
         [JsonPropertyName("Number")]
         public string Number { get; set; }

@@ -15,7 +15,7 @@ namespace Exercicio.Repositories.v1
                 string jsonContract = JsonSerializer.Serialize(contract);
                 HttpContent content = new StringContent(jsonContract, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await contractRepository.PostAsync("https://localhost:7197/api/contract/", content);
-                return response.IsSuccessStatusCode ? true : false;
+                return !response.IsSuccessStatusCode ? true : false;
             }
         }
 
