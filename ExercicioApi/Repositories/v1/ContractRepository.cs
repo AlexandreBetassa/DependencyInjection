@@ -6,35 +6,23 @@ namespace ExercicioApi.Repositories.v1
 {
     public class ContractRepository : IContractRepository
     {
-        private readonly IMongoCollection<Contract> _contractRepository;
+        private readonly IDatabase<Contract> _contractRepository;
 
-        public ContractRepository(IDatabaseSettings settings)
+        public ContractRepository(IDatabaseSettings settings, IDatabase<Contract> database)
         {
-            var contract = new MongoClient(settings.ConnectionString);
-            var database = contract.GetDatabase(settings.DatabaseName);
-            _contractRepository = database.GetCollection<Contract>(settings.ContractCollectionName);
+            //var contract = new MongoClient(settings.ConnectionString);
+            //var database = contract.GetDatabase(settings.DatabaseName);
+            _contractRepository = database;
         }
 
-        public async Task<Contract> CreateAsync(Contract entity)
-        {
-            _contractRepository.InsertOne(entity);
-            return await Task.FromResult(entity);
-        }
+        public Task<Contract> CreateAsync(Contract entity) => _contractRepository.CreateAsync(entity);
 
-        public async Task<Contract> DeleteAsync(Contract entity)
-        {
-            await _contractRepository.DeleteOneAsync(contract => contract.Id == entity.Id);
-            return await Task.FromResult(entity);
-        }
+        public Task<Contract> DeleteAsync(Contract entity) => _contractRepository.DeleteAsync(entity);
 
-        public async Task<Contract> GetAsync(string id) => await _contractRepository.Find(entity => entity.Id == id).FirstOrDefaultAsync();
+        public Task<Contract> GetAsync(string id) => _contractRepository.GetAsync(id);
 
-        public async Task<List<Contract>> GetAsync() => await _contractRepository.Find(contract => true).ToListAsync();
+        public Task<List<Contract>> GetAsync() => _contractRepository.GetAsync();
 
-        public async Task<Contract> UpdateAsync(Contract entity)
-        {
-            await _contractRepository.ReplaceOneAsync(entityIn => entityIn.Id == entity.Id, entity);
-            return await Task.FromResult(entity);
-        }
+        public Task<Contract> UpdateAsync(Contract entity) => _contractRepository.UpdateAsync(entity);
     }
 }
