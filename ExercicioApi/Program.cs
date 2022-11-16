@@ -12,8 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 //AddMongoService();
 builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+
 builder.Services.AddSingleton<IContractRepository, ContractRepository>();
 builder.Services.AddSingleton<IInstallmentRepository, InstallmentRepository>();
+
 builder.Services.AddSingleton<IDatabase<Contract>, Database<Contract>>();
 builder.Services.AddSingleton<IDatabase<Installment>, Database<Installment>>();
 

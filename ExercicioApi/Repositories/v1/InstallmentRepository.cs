@@ -7,10 +7,7 @@ namespace ExercicioApi.Repositories.v1
     {
         private readonly IDatabase<Installment> _database;
 
-        public InstallmentRepository(IDatabase<Installment> database)
-        {
-            _database = database;
-        }
+        public InstallmentRepository(IDatabase<Installment> database) => _database = database;
 
         public Task<Installment> CreateAsync(Installment entity) => _database.CreateAsync(entity);
 

@@ -1,6 +1,5 @@
 ﻿using ExercicioApi.Contracts.v1;
 using ExercicioApi.Models.v1;
-using MongoDB.Driver;
 
 namespace ExercicioApi.Repositories.v1
 {
@@ -8,10 +7,7 @@ namespace ExercicioApi.Repositories.v1
     {
         private readonly IDatabase<Contract> _contractRepository;
 
-        public ContractRepository(IDatabase<Contract> database)
-        {
-            _contractRepository = database;
-        }
+        public ContractRepository(IDatabase<Contract> database) => _contractRepository = database;
 
         public Task<Contract> CreateAsync(Contract entity) => _contractRepository.CreateAsync(entity);
 
