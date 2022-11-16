@@ -10,24 +10,12 @@ using System.Drawing.Text;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
-builder.Services.AddMongoService();
-
-builder.Services.AddScoped<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-builder.Services.AddScoped<IContractRepository, ContractRepository>();
-builder.Services.AddScoped<IDatabase<IEntity>, Database<IEntity>>();
-builder.Services.AddMongoService();
-
-//COMO FARIA NORMALMENTE***********************************
-//public IService AddMongoService()
-//{
-//    DatabaseSettings _settings = new();
-//    var contracts = new MongoClient(_settings.ConnectionString);
-//    var database = contracts.GetDatabase(_settings.DatabaseName);
-//    IMongoCollection<Contract> collection = database.GetCollection<Contract>(_settings.ContractCollectionName);
-//}
-//COMO FARIA NORMALMENTE***********************************
-
-
+//AddMongoService();
+builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+builder.Services.AddSingleton<IContractRepository, ContractRepository>();
+builder.Services.AddSingleton<IInstallmentRepository, InstallmentRepository>();
+builder.Services.AddSingleton<IDatabase<Contract>, Database<Contract>>();
+builder.Services.AddSingleton<IDatabase<Installment>, Database<Installment>>();
 
 builder.Services.AddControllers();
 

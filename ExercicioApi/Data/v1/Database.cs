@@ -6,7 +6,12 @@ namespace ExercicioApi.Data.v1
     public class Database<T> : IDatabase<T> where T : IEntity
     {
         private readonly IMongoCollection<T> _collection;
-        public Database(IMongoCollection<T> collection) => _collection = collection;
+        public Database(IDatabaseSettings settings)
+        {
+            var mongoConnection = new MongoClient(settings.ConnectionString);
+            var database = mongoConnection.GetDatabase(settings.DatabaseName);
+            _collection = database.GetCollection<T>($"{typeof(T).Name}");
+        }
 
         public async Task<T> CreateAsync(T entity)
         {
@@ -22,11 +27,7 @@ namespace ExercicioApi.Data.v1
 
         public async Task<T> GetAsync(string id) => await _collection.Find(entityOut => entityOut.Id == id).FirstOrDefaultAsync();
 
-
-        public async Task<List<T>> GetAsync()
-        {
-            return await _collection.Find(entity => true).ToListAsync();
-        }
+        public async Task<List<T>> GetAsync() => await _collection.Find(entity => true).ToListAsync();
 
         public async Task<T> UpdateAsync(T entity)
         {

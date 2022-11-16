@@ -8,10 +8,8 @@ namespace ExercicioApi.Repositories.v1
     {
         private readonly IDatabase<Contract> _contractRepository;
 
-        public ContractRepository(IDatabaseSettings settings, IDatabase<Contract> database)
+        public ContractRepository(IDatabase<Contract> database)
         {
-            //var contract = new MongoClient(settings.ConnectionString);
-            //var database = contract.GetDatabase(settings.DatabaseName);
             _contractRepository = database;
         }
 

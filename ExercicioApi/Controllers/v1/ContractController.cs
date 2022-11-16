@@ -9,13 +9,19 @@ namespace ExercicioApi.Controllers.v1
     public class ContractController : ControllerBase
     {
         private readonly IContractRepository _repositoryContract;
+        private readonly IInstallmentRepository _repositoryInstallments;
 
-        public ContractController(IContractRepository repositoryContract) => _repositoryContract = repositoryContract;
+        public ContractController(IContractRepository repositoryContract, IInstallmentRepository repositoryInstallments)
+        {
+            _repositoryContract = repositoryContract;
+            _repositoryInstallments = repositoryInstallments;
+        }
 
         [HttpPost]
         public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
         {
             await _repositoryContract.CreateAsync(contract);
+            await _repositoryInstallments.CreateAsync(contract.Installments[0]);
             return CreatedAtRoute("GetContract", new { numberContract = contract.Number }, contract);
         }
 
