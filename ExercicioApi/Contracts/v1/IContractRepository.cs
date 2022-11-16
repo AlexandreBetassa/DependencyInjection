@@ -2,8 +2,7 @@
 
 namespace ExercicioApi.Contracts.v1
 {
-    public interface IContractRepository : IRepository<Contract>
+    public interface IContractRepository : IDatabase<Contract>
     {
-        Task<Contract> GetContract(string numberContract);
     }
 }

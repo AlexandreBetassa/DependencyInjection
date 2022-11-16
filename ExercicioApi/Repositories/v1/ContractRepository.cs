@@ -14,16 +14,27 @@ namespace ExercicioApi.Repositories.v1
             var database = contract.GetDatabase(settings.DatabaseName);
             _contractRepository = database.GetCollection<Contract>(settings.ContractCollectionName);
         }
-        public async Task<Contract> Create(Contract contract)
+
+        public async Task<Contract> CreateAsync(Contract entity)
         {
-            _contractRepository.InsertOne(contract);
-            return await Task.FromResult(contract);
+            _contractRepository.InsertOne(entity);
+            return await Task.FromResult(entity);
         }
 
-        public void Delete(Contract contractIn) => _contractRepository.DeleteOne(contract => contract.Number == contractIn.Number);
+        public async Task<Contract> DeleteAsync(Contract entity)
+        {
+            await _contractRepository.DeleteOneAsync(contract => contract.Id == entity.Id);
+            return await Task.FromResult(entity);
+        }
 
-        public Task<List<Contract>> Get() => _contractRepository.Find(contract => true).ToListAsync();
+        public async Task<Contract> GetAsync(string id) => await _contractRepository.Find(entity => entity.Id == id).FirstOrDefaultAsync();
 
-        public Task<Contract> GetContract(string numberContract) => _contractRepository.Find(contract => contract.Number == numberContract).FirstOrDefaultAsync();
+        public async Task<List<Contract>> GetAsync() => await _contractRepository.Find(contract => true).ToListAsync();
+
+        public async Task<Contract> UpdateAsync(Contract entity)
+        {
+            await _contractRepository.ReplaceOneAsync(entityIn => entityIn.Id == entity.Id, entity);
+            return await Task.FromResult(entity);
+        }
     }
 }

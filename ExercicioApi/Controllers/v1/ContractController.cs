@@ -15,14 +15,14 @@ namespace ExercicioApi.Controllers.v1
         [HttpPost]
         public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
         {
-            await _repositoryContract.Create(contract);
+            await _repositoryContract.CreateAsync(contract);
             return CreatedAtRoute("GetContract", new { numberContract = contract.Number }, contract);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Contract>>> Get() => await _repositoryContract.Get();
+        public async Task<ActionResult<List<Contract>>> Get() => await _repositoryContract.GetAsync();
 
         [HttpGet("{numberContract}", Name = "GetContract")]
-        public async Task<ActionResult<Contract>> Get(string numberContract) => await _repositoryContract.GetContract(numberContract);
+        public async Task<ActionResult<Contract>> Get(string numberContract) => await _repositoryContract.GetAsync(numberContract);
     }
 }
