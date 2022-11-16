@@ -11,6 +11,11 @@ namespace ExercicioApi.Repositories.v1
 
         public Task<Contract> CreateAsync(Contract entity) => _contractRepository.CreateAsync(entity);
 
+        public Task<List<Contract>> CreateManyAsync(List<Contract> entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Contract> DeleteAsync(Contract entity) => _contractRepository.DeleteAsync(entity);
 
         public Task<Contract> GetAsync(string id) => _contractRepository.GetAsync(id);

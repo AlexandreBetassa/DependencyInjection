@@ -5,6 +5,7 @@
         public Task<T> GetAsync(string id);
         public Task<List<T>> GetAsync();
         public Task<T> CreateAsync(T entity);
+        Task<List<T>> CreateManyAsync(List<T> entity);
         public Task<T> UpdateAsync(T entity);
         public Task<T> DeleteAsync(T entity);
     }

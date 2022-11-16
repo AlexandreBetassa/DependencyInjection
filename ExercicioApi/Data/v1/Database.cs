@@ -19,6 +19,12 @@ namespace ExercicioApi.Data.v1
             return await Task.FromResult(entity);
         }
 
+        public async Task<List<T>> CreateManyAsync(List<T> entity)
+        {
+            _collection.InsertMany(entity);
+            return await Task.FromResult(entity);
+        }
+
         public async Task<T> DeleteAsync(T entity)
         {
             _collection.DeleteOne(entityOut => entityOut.Id == entity.Id);

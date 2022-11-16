@@ -20,7 +20,7 @@ namespace ExercicioApi.Controllers.v1
         [HttpPost]
         public async Task<ActionResult<Contract>> Post([FromBody] Contract contract)
         {
-            await _repositoryInstallments.CreateAsync(contract.Installments[0]);
+            contract.Installments = await _repositoryInstallments.CreateManyAsync(contract.Installments);
             await _repositoryContract.CreateAsync(contract);
             return CreatedAtRoute("GetContract", new { numberContract = contract.Number }, contract);
         }
